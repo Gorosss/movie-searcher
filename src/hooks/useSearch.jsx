@@ -12,4 +12,3 @@ export function useSearch(){
     }),[search]
     return {search, updateSearch, error}
   }
-  

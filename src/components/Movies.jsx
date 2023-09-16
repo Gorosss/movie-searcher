@@ -4,11 +4,14 @@
 export function MoviesResult ({movies}){
     return (
         movies.map(movie => (
-        <li className='movie' key={movie.id}>
-            <h2>{movie.title}</h2>
-            <p>{movie.type} - {movie.year}</p>
-            <img src={movie.poster} alt={movie.title} />
-        </li>
+        
+
+            <div className="poster-page" id={movie.id}>
+                <img src={movie.poster} alt={movie.title} />
+                <span>{movie.title}</span>
+            </div>
+       
+        
         ))
     )
   }
@@ -27,9 +30,9 @@ export function Movies ({searchResult}){
     return (
         
         hasMovies ? (
-            <ul className='movies'>
+            <div className='movies'>
                 <MoviesResult movies={movies}/>
-            </ul>
+            </div>
         ):
         <NoMoviesResult />
           
