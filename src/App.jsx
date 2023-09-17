@@ -1,9 +1,13 @@
-import { useCallback } from 'react'
+import { useCallback, useState} from 'react'
 import './css/App.css'
+import './css/Navbar.css'
+
 import {Movies} from './components/Movies.jsx'
 import {useMovies} from './hooks/useMovies.jsx'
 import {useSearch} from './hooks/useSearch.jsx'
 import debounce from 'just-debounce-it'
+
+
 
 
 //Api https://www.omdbapi.com/?apikey=5d53d94e&s=Avengers
@@ -11,9 +15,9 @@ import debounce from 'just-debounce-it'
 function App() {  
 
   
-
+  const [sortYear, setSortYear] = useState(false)
   const {search, updateSearch, error} = useSearch()  
-  const {mappedSearchResult, getMovies, loading} = useMovies({search})
+  const {mappedSearchResult, getMovies, loading} = useMovies({search, sortYear})
 
 
   const debounceGetMovies = useCallback(
@@ -34,15 +38,26 @@ function App() {
     debounceGetMovies(newSearch)
   }
 
+  const handleSortYear = () => {
+    setSortYear(!sortYear)
+  }
 
   return (
     <div className='page'>
+      
       <header>
-        <h1>Movie Searcher</h1>
+      <div className='nav'>
+      <div className='logo'>
+        Movie Searcher
+      </div>
+      <div className='search'>
         <form className='form' onSubmit={handleSubmit}>
           <input onChange={handleChange} placeholder='Spiderman, Star Wars ...'/>
+          <input type='checkbox' onChange={handleSortYear} checked={sortYear}/>
           <button type='submit'> Search </button>
         </form>
+      </div>
+    </div>
       </header>
 
       <main>

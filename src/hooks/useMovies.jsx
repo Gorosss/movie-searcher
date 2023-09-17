@@ -3,7 +3,7 @@ import { searchMovies } from '../apis/movies.js'
 
 
 
-export function useMovies({search}){
+export function useMovies({search , sortYear}){
 
     const [mappedSearchResult, setMappedSearchResult] = useState([])
 
@@ -30,6 +30,10 @@ export function useMovies({search}){
         
     },[])
 
-    return {mappedSearchResult, getMovies, loading, error}
+    const sortedYearMovies = sortYear ?
+        [... mappedSearchResult].sort((a,b) => b.year.localeCompare(a.year)) :
+        mappedSearchResult
+
+    return {mappedSearchResult : sortedYearMovies, getMovies, loading, error}
 
 }
