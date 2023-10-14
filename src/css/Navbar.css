@@ -46,3 +46,11 @@
 .nav li:hover{
    background-color:#0083cd;
 }
+
+
+.nav .logo {
+    font-weight:bolder;
+    font-family: Cursive;
+    font-size: xx-large;
+
+}

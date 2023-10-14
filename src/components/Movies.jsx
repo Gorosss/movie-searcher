@@ -19,7 +19,7 @@ export function MoviesResult ({movies}){
                     ) : (
                     <img src="src/img/noImage.png" alt="No Image" />
                     )}
-                <span>{movie.title} ({movie.year}{movie.type})</span>
+                <span>{movie.title} ({movie.year} {movie.type})</span>
             </div>
        
         
